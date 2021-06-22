@@ -1,0 +1,21 @@
+{
+  "name": "com.dk.excelreader",
+  "version": "1.0.0",
+  "displayName": "DK-Excel Reader",
+  "description": "Tool to load data from excel files with certain headers, generate protobuf config files, c# files and data binary files",
+  "unity": "2020.3",
+  "unityRelease": "4f1",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "keywords": [
+    "archive",
+    "build"
+  ],
+  "author": {
+    "name": "Nicolas Dai",
+    "email": "nicolasdai@vip.qq.com",
+    "url": "https://www.unity3d.com"
+  },
+  "type": "tool"
+}

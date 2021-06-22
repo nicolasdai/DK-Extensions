@@ -1,0 +1,19 @@
+{
+    "name": "dk-archivetool.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a62fd4e867b835f47bb631972a2dc920",
+        "GUID:69448af7b92c7f342b298e06a37122aa"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

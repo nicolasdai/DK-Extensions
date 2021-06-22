@@ -1,0 +1,21 @@
+{
+  "name": "com.dk.archivetool",
+  "version": "1.0.0",
+  "displayName": "DK-Archive Tool",
+  "description": "This is an auto archive tool, intergated with addressables",
+  "unity": "2020.3",
+  "unityRelease": "4f1",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "keywords": [
+    "archive",
+    "build"
+  ],
+  "author": {
+    "name": "Nicolas Dai",
+    "email": "nicolasdai@vip.qq.com",
+    "url": "https://www.unity3d.com"
+  },
+  "type": "tool"
+}
