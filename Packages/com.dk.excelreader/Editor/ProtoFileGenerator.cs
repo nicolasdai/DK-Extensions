@@ -5,10 +5,6 @@ using System.Text;
 using System.Diagnostics;
 using System.Linq;
 using Google.Protobuf;
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
-#endif
 using UnityEngine;
 
 namespace DK.ExcelReader
@@ -95,13 +91,12 @@ namespace DK.ExcelReader
         public override void PostCodeGeneration(ExcelReaderSettings settings)
         {
             // generate csharp code based on proto file
-            var processInfo = new ProcessStartInfo(Path.Combine("Packages/com.dk.excelreader",
-                "tools/generate_csharp.bat"))
+            var processInfo = new ProcessStartInfo(Path.GetFullPath("Packages/com.dk.excelreader/tools/generate_csharp.bat"))
             {
                 CreateNoWindow = true, UseShellExecute = false, WorkingDirectory = Application.dataPath
             };
 
-            var exePath = Path.Combine("Packages/com.dk.excelreader", "tools/protoc.exe");
+            var exePath = Path.GetFullPath("Packages/com.dk.excelreader/tools/protoc.exe");
             var csharpPath = (Path.GetFullPath(settings.csharpPath)).Replace('\\', '/');
             var protoPath = (Path.GetFullPath(settings.protoPath)).Replace('\\', '/');
             processInfo.Arguments = $"{exePath} {csharpPath} {protoPath}";
@@ -119,8 +114,7 @@ namespace DK.ExcelReader
         public override void PostCodeGeneration(ExcelReaderSettings settings)
         {
             // generate csharp code based on proto file
-            var processInfo = new ProcessStartInfo(Path.Combine("Packages/com.dk.excelreader",
-                "tools/generate_csharp.sh"))
+            var processInfo = new ProcessStartInfo(Path.GetFullPath("Packages/com.dk.excelreader/tools/generate_csharp.sh"))
             {
                 CreateNoWindow = true, UseShellExecute = false, WorkingDirectory = Application.dataPath
             };

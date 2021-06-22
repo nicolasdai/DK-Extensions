@@ -1,8 +1,8 @@
 set exePath=%1 
-::"E:/_Sorani_Devspace/Pixel_Coffee_Office/Assets/DK-Extensions/excel_reader/tools/protoc"
+::set exePath="E:/_Sorani_Devspace/DK-Extensions/Packages/com.dk.excelreader/tools/protoc.exe"
 set outputPath=%2
-::"E:/_Sorani_Devspace/Pixel_Coffee_Office/Assets/_Scripts/3-GameData/DataDefine/Generated"
+::set outputPath="E:/_Sorani_Devspace/DK-Extensions/Assets/_Scripts/3-GameData/DataDefine/AutoGenCSharp"
 set protoPath=%3
-::"E:/_Sorani_Devspace/Pixel_Coffee_Office/Assets/_Scripts/3-GameData/DataDefine/AutoGen/"
+::set protoPath="E:/_Sorani_Devspace/DK-Extensions/Assets/_Scripts/3-GameData/DataDefine/Proto"
 
 %exePath% --proto_path=%protoPath% --csharp_out=%outputPath% %protoPath%/*.proto
