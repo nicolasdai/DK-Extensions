@@ -40,7 +40,7 @@ namespace DK.ExcelReader
         
         private void OnGUI()
         {
-            var style = new GUIStyle {normal = {textColor = Color.white}, fontSize = 28};
+            if (_excelReader == null) Init();
             
             // display settings
             _settings.unityEnginePath = EditorGUILayout.TextField("Engine Path", _settings.unityEnginePath);
@@ -81,40 +81,29 @@ namespace DK.ExcelReader
             }
             
             _settings = (ExcelReaderSettings)AssetDatabase.LoadAssetAtPath(pathSettingPath, typeof(ExcelReaderSettings));
-            _excelReader = new ExcelReader(_settings);
             
+            if (!Directory.Exists(_settings.managerPath))
+            {
+                Directory.CreateDirectory(_settings.managerPath);
+            }
+            if (!Directory.Exists(_settings.binPath))
+            {
+                Directory.CreateDirectory(_settings.binPath);
+            }
+            if (!Directory.Exists(_settings.csharpPath))
+            {
+                Directory.CreateDirectory(_settings.csharpPath);
+            }
+            if (!Directory.Exists(_settings.protoPath))
+            {
+                Directory.CreateDirectory(_settings.protoPath);
+            }
+            if (!Directory.Exists(_settings.testPath))
+            {
+                Directory.CreateDirectory(_settings.testPath);
+            }
+            
+            _excelReader = new ExcelReader(_settings);
         }
-
-        // protected override OdinMenuTree BuildMenuTree()
-        // {
-        //     var tree = new OdinMenuTree(true);
-        //
-        //     if (!Directory.Exists(toolSettings))
-        //     {
-        //         Directory.CreateDirectory(toolSettings);
-        //     }
-        //
-        //     var pathSettingPath = Path.Combine(toolSettings, pathSetting);
-        //     if (!File.Exists(pathSettingPath))
-        //     {
-        //         var s = ScriptableObject.CreateInstance("DK.ExcelReader.ExcelReaderSettings");
-        //         AssetDatabase.CreateAsset(s, pathSettingPath);
-        //         AssetDatabase.SaveAssets();
-        //     }
-        //
-        //     var settings = (ExcelReaderSettings)AssetDatabase.LoadAssetAtPath(pathSettingPath, typeof(ExcelReaderSettings));
-        //     tree.Add("Tool Settings", settings);
-        //
-        //     if (!Directory.Exists(settings.protoPath))
-        //     {
-        //         Directory.CreateDirectory(settings.protoPath);
-        //     }
-        //
-        //     var reader = new ExcelReader(settings);
-        //     tree.AddObjectAtPath("Data Generator", reader);
-        //     tree.AddAllAssetsAtPath("Generated Data", settings.protoPath, typeof(ScriptableObject), true, false);
-        //
-        //     return tree;
-        // }
     }
 }

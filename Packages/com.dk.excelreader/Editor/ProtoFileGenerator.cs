@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace DK.ExcelReader
 {
-    public class ProtoFileGenerator : CodeGeneraterBase
+    public class ProtoFileGenerator : CodeGeneratorBase
     {
         private const string _csharpNamespace = "Sorani.Yookoso.GameData";
         private const string _configManagerName = "ConfigManager";
@@ -95,13 +95,13 @@ namespace DK.ExcelReader
         public override void PostCodeGeneration(ExcelReaderSettings settings)
         {
             // generate csharp code based on proto file
-            var processInfo = new ProcessStartInfo(Path.Combine(Application.dataPath,
-                $"DK-Extensions/excel_reader/tools/generate_csharp.bat"))
+            var processInfo = new ProcessStartInfo(Path.Combine("Packages/com.dk.excelreader",
+                "tools/generate_csharp.bat"))
             {
                 CreateNoWindow = true, UseShellExecute = false, WorkingDirectory = Application.dataPath
             };
 
-            var exePath = Path.Combine(Application.dataPath, $"DK-Extensions/excel_reader/tools/protoc.exe");
+            var exePath = Path.Combine("Packages/com.dk.excelreader", "tools/protoc.exe");
             var csharpPath = (Path.GetFullPath(settings.csharpPath)).Replace('\\', '/');
             var protoPath = (Path.GetFullPath(settings.protoPath)).Replace('\\', '/');
             processInfo.Arguments = $"{exePath} {csharpPath} {protoPath}";
@@ -119,8 +119,8 @@ namespace DK.ExcelReader
         public override void PostCodeGeneration(ExcelReaderSettings settings)
         {
             // generate csharp code based on proto file
-            var processInfo = new ProcessStartInfo(Path.Combine(Application.dataPath,
-                $"DK-Extensions/excel_reader/tools/generate_csharp.sh"))
+            var processInfo = new ProcessStartInfo(Path.Combine("Packages/com.dk.excelreader",
+                "tools/generate_csharp.sh"))
             {
                 CreateNoWindow = true, UseShellExecute = false, WorkingDirectory = Application.dataPath
             };

@@ -20,7 +20,7 @@ using UnityEngine;
 
 namespace DK.ExcelReader
 {
-    public class CodeGeneraterBase : ICodeGenerator
+    public class CodeGeneratorBase : ICodeGenerator
     {
         public virtual void GenerateBasicCode(string className, ExcelReaderSettings settings)
         {

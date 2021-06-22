@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 using UnityEditor;
+using UnityEngine;
 
 namespace DK.ExcelReader
 {
@@ -19,15 +20,22 @@ namespace DK.ExcelReader
         public void GenerateAllConfigFile()
         {
             _generator = new ProtoFileGenerator();
-            
-            // clear existed files
-            var oldFiles = new List<string>();
-            oldFiles.AddRange(Directory.GetFiles(_settings.protoPath));
-            oldFiles.AddRange(Directory.GetFiles(_settings.csharpPath));
 
-            foreach (var path in oldFiles.Where(File.Exists))
+            try
             {
-                File.Delete(path);
+                // clear existed files
+                var oldFiles = new List<string>();
+                oldFiles.AddRange(Directory.GetFiles(_settings.protoPath));
+                oldFiles.AddRange(Directory.GetFiles(_settings.csharpPath));
+
+                foreach (var path in oldFiles.Where(File.Exists))
+                {
+                    File.Delete(path);
+                }
+            }
+            catch
+            {
+                Debug.Log("Clear");
             }
 
             var allExcels = Directory.GetFiles(_settings.excelPaths);
