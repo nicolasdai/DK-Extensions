@@ -1,22 +1,18 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace DK.Archive
 {
     public partial class ClientBuilderWindow : EditorWindow
     {
-        private const string VersionInfoPath = "Assets/DK-Extensions/archive_tool/cache/version_info.asset";
-        private const string ArchiveConfigPath = "Assets/DK-Extensions/archive_tool/cache/archive_config.asset";
-        
-        [FormerlySerializedAs("VersionString")] public string versionString;
-
+        public string versionString;
         public bool buildAssetBundles;
-
-        // save resource map to resources folder to load directly
-        // streaming asset folder cannot be load by file stream
-        private readonly string _resourceMapPath = "Assets/Resources/" + PathUtil.resourceMapFileName;
+        
+        private const string VersionInfoPath = "Assets/DK-Extensions-Configs/archive_tool/version_info.asset";
+        private const string ArchiveConfigPath = "Assets/DK-Extensions-Configs/archive_tool/archive_config.asset";
+        
+        private const string PatchRoot = "Patch/";
         
         // private float smallBtnHeight = 30;
         private const float MediumBtnHeight = 50;
@@ -76,7 +72,7 @@ namespace DK.Archive
 
         private void Init()
         {
-            versionString = VersionInfo.version;
+            versionString = VersionInfo.Version;
         }
 
         private void LoadVersionFile()
@@ -194,7 +190,7 @@ namespace DK.Archive
             // copy hotfix to streaming path
             var assemblyPath = Application.dataPath + "/../Library/ScriptAssemblies/";
 
-            var patchPath = Path.Combine(Application.streamingAssetsPath, PathUtil.patchRoot);
+            var patchPath = Path.Combine(Application.streamingAssetsPath, PatchRoot);
             if (!Directory.Exists(patchPath))
                 Directory.CreateDirectory(patchPath);
 
@@ -209,7 +205,7 @@ namespace DK.Archive
                 true);
 
             // copy hotfix to persistent path
-            patchPath = PathUtil.PatchRoot();
+            patchPath = GetPatchRoot();
             if (!Directory.Exists(patchPath))
                 Directory.CreateDirectory(patchPath);
 
@@ -261,7 +257,29 @@ namespace DK.Archive
             VersionInfo.AddBuild();
             EditorUtility.SetDirty(VersionInfo);
             AssetDatabase.SaveAssets();
-            versionString = VersionInfo.version;
+            versionString = VersionInfo.Version;
+        }
+        
+        private static string GetPatchRoot()
+        {
+            return Path.Combine(Path.Combine(Application.persistentDataPath, GetPlatformDir(), PatchRoot));
+        }
+        
+        private static string GetPlatformDir()
+        {
+            // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+            switch (Application.platform)
+            {
+                case RuntimePlatform.Android:
+                    return "Android";
+                case RuntimePlatform.WindowsPlayer:
+                case RuntimePlatform.WindowsEditor:
+                    return "Win";
+                case RuntimePlatform.IPhonePlayer:
+                    return "iOS";
+                default:
+                    return "Android";
+            }
         }
     }
 }

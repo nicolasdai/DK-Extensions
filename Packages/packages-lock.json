@@ -4,7 +4,9 @@
       "version": "file:com.dk.archivetool",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "com.unity.addressables": "1.16.19"
+      }
     },
     "com.dk.excelreader": {
       "version": "file:com.dk.excelreader",

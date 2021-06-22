@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DK.Archive;
-using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(ArchiveConfig))]
