@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
+using System.IO;
 
 namespace DK.ExcelReader
 {
     public class ExcelReaderSettings : ScriptableObject
     {
-        public string unityEnginePath = @"D:\2019.3.11f1\Editor\Data\Managed\UnityEngine\";
+        public string unityEnginePath = Path.GetDirectoryName(EditorApplication.applicationPath) + @"\Data\Managed\UnityEngine\";
         public string excelPaths = @"";
         public string protoPath = @"";
         public string csharpPath = "";
