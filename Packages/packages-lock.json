@@ -8,6 +8,12 @@
         "com.unity.addressables": "1.16.19"
       }
     },
+    "com.dk.attribute": {
+      "version": "file:com.dk.attribute",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.dk.excelreader": {
       "version": "file:com.dk.excelreader",
       "depth": 0,
