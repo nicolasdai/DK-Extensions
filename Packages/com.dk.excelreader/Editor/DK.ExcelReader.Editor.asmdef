@@ -1,0 +1,17 @@
+{
+    "name": "DK.ExcelReader.Editor",
+    "references": [
+        "GUID:e8b514aca4ad50549ba98356dccd7f0c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

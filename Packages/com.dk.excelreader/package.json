@@ -1,6 +1,6 @@
 {
   "name": "com.dk.excelreader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "DK-Excel Reader",
   "description": "Tool to load data from excel files with certain headers, generate protobuf config files, c# files and data binary files",
   "unity": "2020.3",
