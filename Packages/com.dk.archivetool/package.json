@@ -1,6 +1,6 @@
 {
   "name": "com.dk.archivetool",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "DK-Archive Tool",
   "description": "This is an auto archive tool, integrated with addressables",
   "unity": "2020.3",
@@ -17,8 +17,5 @@
     "email": "nicolasdai@vip.qq.com",
     "url": "https://www.unity3d.com"
   },
-  "type": "tool",
-  "dependencies": {
-    "com.unity.addressables": "1.16.19"
-  }
+  "type": "tool"
 }

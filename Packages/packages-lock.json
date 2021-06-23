@@ -4,9 +4,7 @@
       "version": "file:com.dk.archivetool",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {
-        "com.unity.addressables": "1.16.19"
-      }
+      "dependencies": {}
     },
     "com.dk.attribute": {
       "version": "file:com.dk.attribute",

@@ -58,7 +58,6 @@ namespace DK.ExcelReader
             _generator = new ProtoFileGenerator();
             
             // clear existed files
-            // clear existed files
             var oldFiles = new List<string>();
             oldFiles.AddRange(Directory.GetFiles(_settings.binPath));
 

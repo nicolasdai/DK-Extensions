@@ -81,28 +81,6 @@ namespace DK.ExcelReader
             }
             
             _settings = (ExcelReaderSettings)AssetDatabase.LoadAssetAtPath(pathSettingPath, typeof(ExcelReaderSettings));
-            
-            if (!Directory.Exists(_settings.managerPath))
-            {
-                Directory.CreateDirectory(_settings.managerPath);
-            }
-            if (!Directory.Exists(_settings.binPath))
-            {
-                Directory.CreateDirectory(_settings.binPath);
-            }
-            if (!Directory.Exists(_settings.csharpPath))
-            {
-                Directory.CreateDirectory(_settings.csharpPath);
-            }
-            if (!Directory.Exists(_settings.protoPath))
-            {
-                Directory.CreateDirectory(_settings.protoPath);
-            }
-            if (!Directory.Exists(_settings.testPath))
-            {
-                Directory.CreateDirectory(_settings.testPath);
-            }
-            
             _excelReader = new ExcelReader(_settings);
         }
     }
