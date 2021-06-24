@@ -122,7 +122,7 @@ namespace DK.ExcelReader
             var exePath = "protoc";
             var csharpPath = (Path.GetFullPath(settings.csharpPath)).Replace('\\', '/');
             var protoPath = (Path.GetFullPath(settings.protoPath)).Replace('\\', '/');
-            processInfo.Arguments = $"{exePath} {csharpPath} {protoPath}";
+            processInfo.Arguments = $"{csharpPath} {protoPath}";
 
             var process = new Process {StartInfo = processInfo};
             process.StartInfo.RedirectStandardInput = true;
