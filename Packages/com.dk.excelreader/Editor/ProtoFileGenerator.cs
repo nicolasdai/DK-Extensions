@@ -119,7 +119,6 @@ namespace DK.ExcelReader
                 CreateNoWindow = true, UseShellExecute = false, WorkingDirectory = Application.dataPath
             };
 
-            var exePath = "protoc";
             var csharpPath = (Path.GetFullPath(settings.csharpPath)).Replace('\\', '/');
             var protoPath = (Path.GetFullPath(settings.protoPath)).Replace('\\', '/');
             processInfo.Arguments = $"{csharpPath} {protoPath}";
