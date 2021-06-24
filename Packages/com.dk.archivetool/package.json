@@ -17,5 +17,9 @@
     "email": "nicolasdai@vip.qq.com",
     "url": "https://www.unity3d.com"
   },
-  "type": "tool"
+  "type": "tool",
+  "dependencies": {
+    "com.unity.addressables": "1.16.19"
+  },
+  "resolutionStrategy": "highest"
 }

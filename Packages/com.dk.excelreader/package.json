@@ -17,5 +17,6 @@
     "email": "nicolasdai@vip.qq.com",
     "url": "https://www.unity3d.com"
   },
-  "type": "tool"
+  "type": "tool",
+  "resolutionStrategy": "highest"
 }
