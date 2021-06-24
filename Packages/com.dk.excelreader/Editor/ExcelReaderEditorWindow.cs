@@ -1,17 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
-using Sirenix.Utilities;
-using Sirenix.Utilities.Editor;
-#endif
-
+﻿using System.IO;
 using UnityEditor;
-
 using UnityEngine;
 
 namespace DK.ExcelReader

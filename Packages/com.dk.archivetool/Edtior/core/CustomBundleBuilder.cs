@@ -7,6 +7,7 @@ using UnityEditor.Build.Reporting;
 
 #if UNITY_IOS
 using UnityEditor.iOS.Xcode;
+using System.IO;
 #endif
 
 namespace DK.Archive
