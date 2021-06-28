@@ -50,7 +50,11 @@ namespace DK.Archive
         {
             var style = new GUIStyle {normal = {textColor = Color.white}, fontSize = 28};
 
+            // version info
             GUILayout.Label($"Ver:{versionString}", style, GUILayout.Height(MediumBtnHeight));
+            
+            // keystore password
+            
 
             GUILayout.BeginHorizontal();
             buildAssetBundles = GUILayout.Toggle(buildAssetBundles, "Build Asset Bundles", GUILayout.Height(MediumBtnHeight));
