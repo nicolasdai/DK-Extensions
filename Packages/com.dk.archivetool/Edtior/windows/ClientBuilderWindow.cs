@@ -12,8 +12,6 @@ namespace DK.Archive
         private const string VersionInfoPath = "Assets/DK-Extensions-Configs/archive_tool/version_info.asset";
         private const string ArchiveConfigPath = "Assets/DK-Extensions-Configs/archive_tool/archive_config.asset";
         
-        private const string PatchRoot = "Patch/";
-        
         // private float smallBtnHeight = 30;
         private const float MediumBtnHeight = 50;
         // private float bigBtnHeight = 60;
@@ -28,15 +26,16 @@ namespace DK.Archive
         }
         private VersionInfo _versionInfo;
 
-        private ArchiveConfig ArchiveConfig
+        private static ArchiveConfig ArchiveConfig
         {
             get
             {
-                if (_archiveConfig == null) LoadArchiveConfigFile();
+                if (_archiveConfig == null || _archiveConfigEditor == null) LoadArchiveConfigFile();
                 return _archiveConfig;
             }
         }
-        private ArchiveConfig _archiveConfig;
+        private static ArchiveConfig _archiveConfig;
+        private static Editor _archiveConfigEditor;
         
         [MenuItem("DK/Package Tool")]
         private static void InitWindow()
@@ -53,8 +52,9 @@ namespace DK.Archive
             // version info
             GUILayout.Label($"Ver:{versionString}", style, GUILayout.Height(MediumBtnHeight));
             
-            // keystore password
-            
+            // configs
+            if (_archiveConfigEditor == null) LoadArchiveConfigFile();
+            _archiveConfigEditor.OnInspectorGUI();
 
             GUILayout.BeginHorizontal();
             buildAssetBundles = GUILayout.Toggle(buildAssetBundles, "Build Asset Bundles", GUILayout.Height(MediumBtnHeight));
@@ -77,6 +77,7 @@ namespace DK.Archive
         private void Init()
         {
             versionString = VersionInfo.Version;
+            LoadArchiveConfigFile();
         }
 
         private void LoadVersionFile()
@@ -100,7 +101,7 @@ namespace DK.Archive
             }
         }
 
-        private void LoadArchiveConfigFile()
+        private static void LoadArchiveConfigFile()
         {
             if (!File.Exists(ArchiveConfigPath))
             {
@@ -119,6 +120,8 @@ namespace DK.Archive
             {
                 _archiveConfig = AssetDatabase.LoadAssetAtPath(ArchiveConfigPath, typeof(ArchiveConfig)) as ArchiveConfig;
             }
+            
+            _archiveConfigEditor = Editor.CreateEditor(_archiveConfig);
         }
 
         // [HorizontalGroup("Build")]
@@ -191,36 +194,23 @@ namespace DK.Archive
         // [Button(ButtonSizes.Medium)]
         private static void CopyHotfix()
         {
+            if (_archiveConfig == null || _archiveConfigEditor == null) LoadArchiveConfigFile();
+            
             // copy hotfix to streaming path
             var assemblyPath = Application.dataPath + "/../Library/ScriptAssemblies/";
 
-            var patchPath = Path.Combine(Application.streamingAssetsPath, PatchRoot);
+            var patchPath = _archiveConfig.hotfixDesPath;
+            if (string.IsNullOrEmpty(patchPath))
+            {
+                patchPath = "Assets/_BinaryAssets/Hotfix/";
+            }
+            
             if (!Directory.Exists(patchPath))
                 Directory.CreateDirectory(patchPath);
 
             File.Copy(
-                Path.Combine(assemblyPath, "Sorani.Yookoso.Hotfix.dll"),
-                Path.Combine(patchPath, "HotFix.bin"),
-                true);
-
-            File.Copy(
-                Path.Combine(assemblyPath, "Sorani.Yookoso.Hotfix.pdb"),
-                Path.Combine(patchPath, "HotFix.pdb"),
-                true);
-
-            // copy hotfix to persistent path
-            patchPath = GetPatchRoot();
-            if (!Directory.Exists(patchPath))
-                Directory.CreateDirectory(patchPath);
-
-            File.Copy(
-                Path.Combine(assemblyPath, "Sorani.Yookoso.Hotfix.dll"),
-                Path.Combine(patchPath, "HotFix.bin"),
-                true);
-
-            File.Copy(
-                Path.Combine(assemblyPath, "Sorani.Yookoso.Hotfix.pdb"),
-                Path.Combine(patchPath, "HotFix.pdb"),
+                Path.Combine(assemblyPath, _archiveConfig.hotfixDllName),
+                Path.Combine(patchPath, "HotFix.bytes"),
                 true);
 
             Debug.Log($"Copied file from [{assemblyPath}] to [{patchPath}]");
@@ -262,11 +252,6 @@ namespace DK.Archive
             EditorUtility.SetDirty(VersionInfo);
             AssetDatabase.SaveAssets();
             versionString = VersionInfo.Version;
-        }
-        
-        private static string GetPatchRoot()
-        {
-            return Path.Combine(Path.Combine(Application.persistentDataPath, GetPlatformDir(), PatchRoot));
         }
         
         private static string GetPlatformDir()
