@@ -242,7 +242,7 @@ namespace DK.Archive
             
             BuildPipeline.BuildPlayer(startScenes, "./version/" + PlayerSettings.productName.Replace(" ", "_") + "_v" + versionString + ".apk", EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
 #elif UNITY_IOS
-            BuildPipeline.BuildPlayer(startScenes, "./version/" + PlayerSettings.productName.Replace(" ", "_") + "_xcode", EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
+            BuildPipeline.BuildPlayer(startScenes, "./version/" + "unity_xcode", EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
 #endif
         }
 
