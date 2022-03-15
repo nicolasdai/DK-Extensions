@@ -126,7 +126,7 @@ namespace DK.Archive
 
         // [HorizontalGroup("Build")]
         // [Button(ButtonSizes.Large), GUIColor(0, 1, 0)]
-        private void BuildClient()
+        public void BuildClient()
         {
             if (!EditorUtility.DisplayDialog(
                 $"Build Client For: {EditorUserBuildSettings.activeBuildTarget}",
@@ -145,21 +145,21 @@ namespace DK.Archive
 
         // [HorizontalGroup("Buttons")]
         // [Button(ButtonSizes.Large)]
-        private static void OpenVersionFolder()
+        public static void OpenVersionFolder()
         {
             EditorUtility.RevealInFinder("./version/");
         }
 
         // [HorizontalGroup("Buttons")]
         // [Button(ButtonSizes.Large)]
-        private static void OpenPersistentFolder()
+        public static void OpenPersistentFolder()
         {
             EditorUtility.RevealInFinder(Application.persistentDataPath);
         }
 
         // [HorizontalGroup("Buttons")]
         // [Button(ButtonSizes.Large)]
-        private static void ClearPersistentFolder()
+        public static void ClearPersistentFolder()
         {
             if (!Directory.Exists(Application.persistentDataPath)) return;
             
@@ -180,7 +180,7 @@ namespace DK.Archive
 
         // [HorizontalGroup("Debug")]
         // [Button(ButtonSizes.Medium)]
-        private void BuildBundle()
+        public void BuildBundle()
         {
             if (EditorUtility.DisplayDialog(
                 $"Build Asset Bundles For: {EditorUserBuildSettings.activeBuildTarget}",
@@ -192,7 +192,7 @@ namespace DK.Archive
 
         // [HorizontalGroup("Debug")]
         // [Button(ButtonSizes.Medium)]
-        private static void CopyHotfix()
+        public static void CopyHotfix()
         {
             if (_archiveConfig == null || _archiveConfigEditor == null) LoadArchiveConfigFile();
             

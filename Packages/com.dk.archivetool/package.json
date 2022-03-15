@@ -1,6 +1,6 @@
 {
   "name": "com.dk.archivetool",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "displayName": "DK-Archive Tool",
   "description": "This is an auto archive tool, integrated with addressables",
   "unity": "2020.3",
