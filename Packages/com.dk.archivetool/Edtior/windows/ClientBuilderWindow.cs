@@ -180,7 +180,7 @@ namespace DK.Archive
 
         // [HorizontalGroup("Debug")]
         // [Button(ButtonSizes.Medium)]
-        public void BuildBundle()
+        public static void BuildBundle()
         {
             if (EditorUtility.DisplayDialog(
                 $"Build Asset Bundles For: {EditorUserBuildSettings.activeBuildTarget}",
