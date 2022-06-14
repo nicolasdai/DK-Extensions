@@ -351,7 +351,7 @@ namespace DK.ExcelReader
             var classInfo = ReadExcelData(className + ".xlsx", settings);
 
             var containerType =
-                Type.GetType("Sorani.Yookoso.GameData." + classInfo.className + "Container, Sorani.Yookoso.GameData",
+                Type.GetType("Sorani.Yookoso.GameData." + classInfo.className + "Container, Sorani.Yookoso.Hotfix",
                     true);
             var containerInstance = Activator.CreateInstance(containerType);
 
@@ -365,7 +365,7 @@ namespace DK.ExcelReader
             for (var i = 0; i < idList.Count; ++i)
             {
                 var classType =
-                    Type.GetType("Sorani.Yookoso.GameData." + classInfo.className + ", Sorani.Yookoso.GameData");
+                    Type.GetType("Sorani.Yookoso.GameData." + classInfo.className + ", Sorani.Yookoso.Hotfix");
                 var configInstance = Activator.CreateInstance(classType);
 
                 var configFields = configInstance.GetType().GetProperties();
